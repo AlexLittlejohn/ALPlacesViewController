@@ -42,6 +42,8 @@ class ALPulsingHalo: CALayer {
         backgroundColor = UIColor(red: 52.0/255.0, green: 183.0/255.0, blue: 250.0/255.0, alpha: 1).CGColor
         contentsScale = UIScreen.mainScreen().scale
         
+        didSetRadius()
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.setupAnimation()
             dispatch_async(dispatch_get_main_queue()) {
@@ -72,7 +74,7 @@ class ALPulsingHalo: CALayer {
         
         var opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
         opacityAnimation.duration = animationDuration
-        opacityAnimation.values = [fromValueForAlpha, CGFloat(0.45), CGFloat(1)]
+        opacityAnimation.values = [fromValueForAlpha, CGFloat(0.45), CGFloat(0)]
         opacityAnimation.keyTimes = [CGFloat(0), keyTimeForHalfOpacity, CGFloat(1)]
         opacityAnimation.removedOnCompletion = false
         

@@ -10,8 +10,9 @@ import UIKit
 
 class ALUserCollectionViewCell: ALCollectionViewCell {
 
-    let pulsingView = UIView()
-    let pulsingViewSize = CGSizeMake(30, 30)
+    let iconView = UIImageView()
+    let iconViewSize = CGSizeMake(30, 30)
+    let pulsingLayer = ALPulsingHalo()
     
     override func commonInit() {
         nameLabel.font = ALCollectionViewCell.nameFont
@@ -25,11 +26,19 @@ class ALUserCollectionViewCell: ALCollectionViewCell {
         
         divider.backgroundColor = UIColor(white: 0.9, alpha: 1)
         
+        iconView.contentMode = UIViewContentMode.Center
+        iconView.image = UIImage(named: "userMarker", inBundle: NSBundle(forClass: ALPlacesViewController.self), compatibleWithTraitCollection: nil)
+        
+        pulsingLayer.radius = 22
+        
+
+        layer.insertSublayer(pulsingLayer, atIndex: 0)
+        
         backgroundColor = UIColor.whiteColor()
         
         addSubview(nameLabel)
         addSubview(addressLabel)
-        addSubview(pulsingView)
+        addSubview(iconView)
         addSubview(divider)
     }
     
@@ -39,13 +48,19 @@ class ALUserCollectionViewCell: ALCollectionViewCell {
         let size = bounds.size
         
         let pulseX = ALCollectionViewCell.horizontalPadding
-        let pulseY = size.height/2 - pulsingViewSize.height/2
+        let pulseY = size.height/2 - iconViewSize.height/2
         
-        pulsingView.frame = CGRectMake(pulseX, pulseY, pulsingViewSize.width, pulsingViewSize.height)
+        iconView.frame = CGRectMake(pulseX, pulseY, iconViewSize.width, iconViewSize.height)
         
-        let nameX = pulseX + pulsingViewSize.width + ALCollectionViewCell.horizontalSpacing
+        let pulseSize = pulsingLayer.frame.size
+        let pulseLayerX = pulseX + (iconViewSize.width/2 - pulseSize.width/2)
+        let pulseLayerY = pulseY + (iconViewSize.height/2 - pulseSize.height/2)
+        
+        pulsingLayer.frame.origin = CGPointMake(pulseLayerX, pulseLayerY)
+        
+        let nameX = pulseX + iconViewSize.width + ALCollectionViewCell.horizontalSpacing
         let nameY = ALCollectionViewCell.verticalPadding
-        let nameWidth = size.width - ALCollectionViewCell.horizontalPadding * 2
+        let nameWidth = size.width - (ALCollectionViewCell.horizontalPadding * 3 + iconViewSize.width)
         let nameHeight = nameLabel.font.lineHeight
         
         nameLabel.frame = CGRectMake(nameX, nameY, nameWidth, nameHeight)
