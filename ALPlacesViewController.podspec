@@ -10,6 +10,6 @@ Pod::Spec.new do |spec|
   spec.resources          = ["ALPlacesViewController/ALPlacesAssets.xcassets"]
   spec.homepage           = "https://github.com/AlexLittlejohn/ALPlacesViewController"
   spec.author             = { "Alex Littlejohn" => "alexlittlejohn@me.com" }
-  spec.dependancy		      = "GoogleMaps"
   spec.frameworks 		    = "CoreLocation"
+  spec.dependency "Alamofire"
 end
