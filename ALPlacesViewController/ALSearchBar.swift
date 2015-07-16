@@ -8,10 +8,10 @@
 
 import UIKit
 
-typealias SearchTextDidChangeCallback = (text: String) -> Void
-typealias DoneButtonCallback = () -> Void
+internal typealias SearchTextDidChangeCallback = (text: String) -> Void
+internal typealias DoneButtonCallback = () -> Void
 
-class ALSearchBar: UIView {
+internal class ALSearchBar: UIView {
 
     let searchField = UITextField()
     let searchBackground = UIView()
@@ -136,11 +136,11 @@ class ALSearchBar: UIView {
         frame.size.height = textX + textHeight
     }
     
-    func doneTapped() {
+    internal func doneTapped() {
         onDoneButton?()
     }
     
-    func textFieldDidChange(notification: NSNotification) {
+    internal func textFieldDidChange(notification: NSNotification) {
         if let textField = notification.object as? UITextField {
             if textField == searchField {
                 onSearch?(text: textField.text)

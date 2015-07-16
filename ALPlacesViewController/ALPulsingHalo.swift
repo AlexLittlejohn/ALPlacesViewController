@@ -8,23 +8,22 @@
 
 import UIKit
 
-class ALPulsingHalo: CALayer {
+internal class ALPulsingHalo: CALayer {
    
-    var radius: CGFloat = 60 {
+    internal var radius: CGFloat = 60 {
         didSet {
             didSetRadius()
         }
     }
-    var fromValueForRadius: CGFloat = 0
-    var fromValueForAlpha: CGFloat = 0.45
-    var animationDuration: CFTimeInterval = 3
-    var keyTimeForHalfOpacity: CGFloat = 0.2
-    var animationGroup: CAAnimationGroup!
+    internal var fromValueForRadius: CGFloat = 0
+    internal var fromValueForAlpha: CGFloat = 0.45
+    internal var animationDuration: CFTimeInterval = 3
+    internal var keyTimeForHalfOpacity: CGFloat = 0.2
+    
+    private var animationGroup: CAAnimationGroup!
     
     override init() {
         super.init()
-        
-        
         commonInit()
     }
 
@@ -38,7 +37,7 @@ class ALPulsingHalo: CALayer {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         backgroundColor = UIColor(red: 52.0/255.0, green: 183.0/255.0, blue: 250.0/255.0, alpha: 1).CGColor
         contentsScale = UIScreen.mainScreen().scale
         
@@ -60,7 +59,7 @@ class ALPulsingHalo: CALayer {
         position = temppos
     }
     
-    func setupAnimation() {
+    private func setupAnimation() {
         animationGroup = CAAnimationGroup()
         animationGroup.duration = animationDuration
         animationGroup.repeatCount = Float.infinity
@@ -79,7 +78,7 @@ class ALPulsingHalo: CALayer {
         opacityAnimation.removedOnCompletion = false
         
         animationGroup.animations = [scaleAnimation, opacityAnimation]
-        
+        animationGroup.delegate = self
     }
     
     override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {

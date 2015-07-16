@@ -8,9 +8,9 @@
 
 import UIKit
 
-typealias ScrollViewDidScrollCallback = (offset: CGPoint) -> Void
+internal typealias ScrollViewDidScrollCallback = (offset: CGPoint) -> Void
 
-class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+internal class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var places: [ALPlace]?
     var userLocation: ALLocation?

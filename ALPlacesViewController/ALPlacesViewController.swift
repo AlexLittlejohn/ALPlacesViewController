@@ -10,35 +10,38 @@ import UIKit
 import CoreLocation
 import MapKit
 
-let APIKey = "AIzaSyBHfzZJchyfOBvwmAacHn8gP3WdaJGaUeI"
+internal let ALPlaceCollectionViewCellIdentifier = "ALPlaceCollectionViewCell"
+internal let ALUserCollectionViewCellIdentifier = "ALUserCollectionViewCell"
+internal let ALPredictionCollectionViewCellIdentifier = "ALPredictionCollectionViewCell"
+internal let ALPlaceCollectionViewHeaderIdentifier = "ALPlaceCollectionViewHeader"
 
-let ALPlaceCollectionViewCellIdentifier = "ALPlaceCollectionViewCell"
-let ALUserCollectionViewCellIdentifier = "ALUserCollectionViewCell"
-let ALPredictionCollectionViewCellIdentifier = "ALPredictionCollectionViewCell"
-let ALPlaceCollectionViewHeaderIdentifier = "ALPlaceCollectionViewHeader"
-
-typealias ALPlacesPickerCallback = (address: String?, coordinate: CLLocationCoordinate2D?, error: NSError?) -> Void
+public typealias ALPlacesPickerCallback = (address: String?, coordinate: CLLocationCoordinate2D?, error: NSError?) -> Void
 
 public class ALPlacesViewController: UIViewController {
 
-    var headerView: ALPlacesHeaderView!
-    let searchView = ALSearchBar()
-    let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: ALStickyHeaderFlowLayout())
+    private let searchView = ALSearchBar()
+    private let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: ALStickyHeaderFlowLayout())
 
-    let placesDelegate = ALPlacesDelegate()
-    var predictionsDelegate: ALPredictionsDelegate?
-    let keyboardObserver = ALKeyboardObservingView()
+    private let placesDelegate = ALPlacesDelegate()
+    private var predictionsDelegate: ALPredictionsDelegate?
+    private let keyboardObserver = ALKeyboardObservingView()
     
-    let minimumHeaderHeight: CGFloat = 20 + 15 + 44 + 15
+    private var userLocation: ALLocation?
+    private var userLocationInteractor: ALUserLocationInteractor?
+    private var onLocationPicked: ALPlacesPickerCallback?
     
-    var markers = [MKAnnotationView]()
-    var places = [ALPlace]()
-    var userLocation: ALLocation?
+    /// Your Google API key
+    /// Throws an exception if this is not set when doing web service calls to google apis
+    public var APIKey: String!
     
-    var onLocationPicked: ALPlacesPickerCallback?
-    var userLocationInteractor: ALUserLocationInteractor?
+    required public init(APIKey: String, completion: ALPlacesPickerCallback?) {
+        super.init(nibName: nil, bundle: nil)
+        self.APIKey = APIKey
+        self.onLocationPicked = completion
+        commonInit()
+    }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
@@ -48,7 +51,16 @@ public class ALPlacesViewController: UIViewController {
         commonInit()
     }
     
-    func commonInit() {
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        onLocationPicked = nil
+        userLocationInteractor = nil
+        userLocation = nil
+        predictionsDelegate = nil
+    }
+    
+    internal func commonInit() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
         
@@ -56,10 +68,6 @@ public class ALPlacesViewController: UIViewController {
         collectionView.registerClass(ALUserCollectionViewCell.self, forCellWithReuseIdentifier: ALUserCollectionViewCellIdentifier)
         collectionView.registerClass(ALPredictionCollectionViewCell.self, forCellWithReuseIdentifier: ALPredictionCollectionViewCellIdentifier)
         collectionView.registerClass(ALPlacesHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ALPlaceCollectionViewHeaderIdentifier)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override public func viewDidLoad() {
@@ -82,7 +90,7 @@ public class ALPlacesViewController: UIViewController {
         searchView.frame = CGRectMake(0, 0, view.bounds.size.width, 0)
         searchView.layoutSearchableState()
         searchView.onDoneButton = {
-            self.onLocationPicked?(address: nil, coordinate: nil, error: nil)
+            self.onLocationPicked?(address: self.userLocation?.address, coordinate: self.userLocation?.coordinate, error: nil)
         }
         
         view.addSubview(collectionView)
@@ -111,15 +119,16 @@ public class ALPlacesViewController: UIViewController {
         }
     }
     
-    func keyboardDidShow(notification: NSNotification) {
+    internal func keyboardDidShow(notification: NSNotification) {
 
+        let minimumHeaderHeight = searchView.statusHeight + searchView.searchPadding + searchView.searchHeight + searchView.searchPadding
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         UIView.animateWithDuration(0.4, animations: { () -> Void in
-            layout.headerReferenceSize.height = self.minimumHeaderHeight
+            layout.headerReferenceSize.height = minimumHeaderHeight
         })
     }
     
-    func keyboardDidHide(notification: NSNotification) {
+    internal func keyboardDidHide(notification: NSNotification) {
         let newHeight = view.bounds.size.height/2
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         UIView.animateWithDuration(0.4, animations: { () -> Void in
@@ -127,7 +136,7 @@ public class ALPlacesViewController: UIViewController {
         })
     }
     
-    func populatePlaces(location: CLLocation) {
+    private func populatePlaces(location: CLLocation) {
         
         ALPlacesSearchInteractor()
             .setCoordinate(location.coordinate)
@@ -136,7 +145,6 @@ public class ALPlacesViewController: UIViewController {
             .onCompletion { places, error in
                 
                 if let p = places {
-                    self.places = p
                     self.placesDelegate.places = p
                     self.collectionView.reloadData()
                 }
@@ -144,7 +152,7 @@ public class ALPlacesViewController: UIViewController {
             }.search()
     }
     
-    func populateWithLocation(location: CLLocation) {
+    private func populateWithLocation(location: CLLocation) {
         userLocation = ALLocation()
         userLocation?.address = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         userLocation?.coordinate = location.coordinate
@@ -161,7 +169,10 @@ public class ALPlacesViewController: UIViewController {
             .start()
     }
     
-    func autocomplete(text: String) {
+    internal func autocomplete(text: String) {
+        
+        collectionView.userInteractionEnabled = true
+        
         if text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 3 {
             
             if (collectionView.delegate as! NSObject) != placesDelegate {
@@ -188,13 +199,11 @@ public class ALPlacesViewController: UIViewController {
                     results = p
                 }
                 
-                self.predictionsDelegate = ALPredictionsDelegate(predictions: results, APIkey: APIKey, onLocationPicked: self.onLocationPicked)
+                self.predictionsDelegate = ALPredictionsDelegate(predictions: results, APIkey: self.APIKey, onLocationPicked: self.onLocationPicked)
                 self.collectionView.delegate = self.predictionsDelegate
                 self.collectionView.dataSource = self.predictionsDelegate
                 self.collectionView.reloadData()
             }.autocomplete()
-            
-            
         }
     }
 }

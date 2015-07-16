@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.platform           = :ios, "8.0"
   spec.license            = "MIT"
   spec.source_files       = "ALPlacesViewController/**/*.{swift}"
-  spec.resources          = ["ALPlacesViewController/ALPlacesAssets.xcassets"]
+  spec.resources          = ["ALPlacesViewController/ALPlacesAssets.xcassets", "ALPlacesViewController/ALPlacesStrings.strings"]
   spec.homepage           = "https://github.com/AlexLittlejohn/ALPlacesViewController"
   spec.author             = { "Alex Littlejohn" => "alexlittlejohn@me.com" }
   spec.frameworks 		    = "CoreLocation"

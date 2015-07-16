@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ALStickyHeaderFlowLayout: UICollectionViewFlowLayout {
+internal class ALStickyHeaderFlowLayout: UICollectionViewFlowLayout {
     
     override var scrollDirection: UICollectionViewScrollDirection {
         get {

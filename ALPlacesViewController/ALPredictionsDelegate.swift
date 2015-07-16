@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ALPredictionsDelegate: ALCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+internal class ALPredictionsDelegate: ALCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     let predictions: [ALPrediction]
     let APIkey: String
