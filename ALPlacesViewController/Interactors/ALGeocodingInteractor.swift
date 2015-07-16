@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AddressBook
 
 typealias ALGeocodingCompletion = (address: String?, error: NSError?) -> Void
 
