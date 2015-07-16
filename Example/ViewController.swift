@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        placePicker = ALPlacesViewController()
-        placePicker.onLocationPicked = onLocationPicked
+        assert(false, "Insert your APIKey here")
+        placePicker = ALPlacesViewController(APIKey: "", completion: onLocationPicked)
         
         button.setTitle("open picker", forState: UIControlState.Normal)
         button.addTarget(self, action: "openPicker", forControlEvents: UIControlEvents.TouchUpInside)
