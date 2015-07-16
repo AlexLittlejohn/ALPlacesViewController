@@ -1,4 +1,4 @@
 platform :ios, '8.0'
 use_frameworks!
-pod 'GoogleMaps'
+pod 'Alamofire'
 xcodeproj 'ALPlacesViewController.xcodeproj'

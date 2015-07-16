@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         presentViewController(placePicker, animated: true, completion: nil)
     }
     
-    func onLocationPicked(address: String?, coordinate: CLLocationCoordinate2D?) {
+    func onLocationPicked(address: String?, coordinate: CLLocationCoordinate2D?, error: NSError?) {
         dismissViewControllerAnimated(true, completion: nil)
         
         addressLabel.text = address
