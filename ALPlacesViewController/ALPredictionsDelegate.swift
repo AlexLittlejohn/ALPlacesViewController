@@ -23,12 +23,20 @@ class ALPredictionsDelegate: ALCollectionViewDelegate, UICollectionViewDelegateF
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        var item = predictions[indexPath.row]
+        let item = predictions[indexPath.row]
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ALPredictionCollectionViewCell
+        
+        collectionView.userInteractionEnabled = false
+        cell.working = true
         
         ALPlaceDetailsInteractor()
             .setPlaceID(item.id)
             .setAPIkey(APIkey)
             .onCompletion { place, error in
+                
+                collectionView.userInteractionEnabled = true
+                cell.working = false
+                
                 if let e = error {
                     self.onLocationPicked?(address: nil, coordinate: nil, error: e)
                 } else if let p = place {

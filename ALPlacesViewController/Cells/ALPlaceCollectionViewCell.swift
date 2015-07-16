@@ -48,7 +48,7 @@ internal class ALPlaceCollectionViewCell: ALCollectionViewCell {
         
         let nameX = iconX + iconViewSize.width + ALCollectionViewCell.horizontalSpacing
         let nameY = ALCollectionViewCell.verticalPadding
-        let nameWidth = size.width - ALCollectionViewCell.horizontalPadding * 2
+        let nameWidth = size.width - (ALCollectionViewCell.horizontalPadding * 3 + iconViewSize.width)
         let nameHeight = nameLabel.font.lineHeight
         
         nameLabel.frame = CGRectMake(nameX, nameY, nameWidth, nameHeight)
