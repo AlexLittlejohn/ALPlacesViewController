@@ -7,27 +7,24 @@
 //
 
 import UIKit
-import GoogleMaps
 
 typealias ScrollViewDidScrollCallback = (offset: CGPoint) -> Void
-typealias PlaceDetailsCallback = (placeID: String) -> GMSPlace
 
-class ALPlacesDelegate: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var places: [GMSPlace]?
-    var userLocation: ALUserLocation?
-    var headerView: ALPlacesHeaderView?
-    var predictions: [GMSAutocompletePrediction]?
-    var onHeaderView: (() -> Void)?
+    var places: [ALPlace]?
+    var userLocation: ALLocation?
+    
     var onScroll: ScrollViewDidScrollCallback?
     var onLocationPicked: ALPlacesPickerCallback?
-
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         onScroll?(offset: scrollView.contentOffset)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func itemAtIndexPath(indexPath: NSIndexPath) -> ALLocation {
         
+        var item = ALLocation()
         var offset = 0
         
         if userLocation != nil {
@@ -35,21 +32,26 @@ class ALPlacesDelegate: NSObject, UICollectionViewDelegateFlowLayout, UICollecti
         }
         
         if userLocation != nil && indexPath.row == 0 {
-            onLocationPicked?(address: userLocation?.address, coordinate: userLocation!.location?.coordinate)
+            item = userLocation!
         } else if places != nil {
-            let place = places![indexPath.row - offset]
-            onLocationPicked?(address: place.name, coordinate: place.coordinate)
-        } else if predictions != nil {
-            let prediction = predictions![indexPath.row]
-            GMSPlacesClient.sharedClient().lookUpPlaceID(prediction.placeID) { place, error in
-                if let p = place {
-                    self.onLocationPicked?(address: p.formattedAddress, coordinate: p.coordinate)
-                }
-            }
+            item = places![indexPath.row - offset]
+        }
+        
+        return item
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var item = itemAtIndexPath(indexPath)
+        
+        if let place = item as? ALPlace {
+            onLocationPicked?(address: place.name, coordinate: place.coordinate, error: nil)
+        } else {
+            onLocationPicked?(address: item.address, coordinate: item.coordinate, error: nil)
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         var count = 0
         
@@ -61,48 +63,37 @@ class ALPlacesDelegate: NSObject, UICollectionViewDelegateFlowLayout, UICollecti
             count += places!.count
         }
         
-        if predictions != nil {
-            count = predictions!.count
-        }
-        
         return count
     }
-
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return ALPlaceCollectionViewCell.cellSize()
-    }
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ALPlaceCollectionViewCellIdentifier, forIndexPath: indexPath) as! ALPlaceCollectionViewCell
+        var item = itemAtIndexPath(indexPath)
         
-        var offset = 0
-        
-        if userLocation != nil {
-            offset = 1
-        }
-        
-        if indexPath.row == 0 && userLocation != nil {
-            cell.configureWithLocation(userLocation!)
-        } else if places != nil {
-            cell.configureWithPlace(places![indexPath.row - offset])
+        if let place = item as? ALPlace {
+            return ALPlaceCollectionViewCell.cellSize()
         } else {
-            cell.configureWithAutocompletePrediction(predictions![indexPath.row])
+            return ALUserCollectionViewCell.cellSize()
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        var cell: UICollectionViewCell
+        
+        var item = itemAtIndexPath(indexPath)
+        
+        if let place = item as? ALPlace {
+            let placeCell = collectionView.dequeueReusableCellWithReuseIdentifier(ALPlaceCollectionViewCellIdentifier, forIndexPath: indexPath) as! ALPlaceCollectionViewCell
+            
+            placeCell.configureWithPlace(place)
+            cell = placeCell
+        } else {
+            let locationCell = collectionView.dequeueReusableCellWithReuseIdentifier(ALUserCollectionViewCellIdentifier, forIndexPath: indexPath) as! ALUserCollectionViewCell
+            locationCell.configureWithLocation(item)
+            cell = locationCell
         }
         
         return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
-        if kind == UICollectionElementKindSectionHeader {
-            if headerView == nil {
-                headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ALPlaceCollectionViewHeaderIdentifier, forIndexPath: indexPath) as? ALPlacesHeaderView
-                
-                onHeaderView?()
-            }
-        }
-        
-        return headerView!
     }
 }

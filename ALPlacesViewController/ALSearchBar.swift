@@ -57,10 +57,20 @@ class ALSearchBar: UIView {
         addSubview(searchField)
         addSubview(doneButton)
         
-        doneButton.setImage(UIImage(named: "locationPickerDone", inBundle: NSBundle(forClass: ALPlacesViewController.self), compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
+        doneButton.setTitle(LocalizedString("search.done"), forState: UIControlState.Normal)
+        doneButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         doneButton.addTarget(self, action: "doneTapped", forControlEvents: UIControlEvents.TouchUpInside)
-        doneButton.layer.masksToBounds = true
+        doneButton.titleLabel!.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        doneButton.backgroundColor = UIColor(red: 52.0/255.0, green: 183.0/255.0, blue: 250.0/255.0, alpha: 1)
+        doneButton.contentEdgeInsets = UIEdgeInsetsMake(7, 10, 6, 10)
+        
         doneButton.layer.cornerRadius = 4
+        doneButton.layer.shadowOffset = CGSizeMake(0, 2)
+        doneButton.layer.shadowColor = UIColor(red: 41.0/255.0, green: 146.0/255.0, blue: 200.0/255.0, alpha: 1).CGColor
+        doneButton.layer.shadowOpacity = 1
+        doneButton.layer.shadowRadius = 0
+        
+        doneButton.sizeToFit()
         
         layoutSearchableState()
     }
@@ -89,7 +99,7 @@ class ALSearchBar: UIView {
         searchBackground.frame = CGRectMake(searchPadding, searchY, searchWidth, searchHeight)
         
         let textHeight = searchHeight - searchTextVerticalPadding * 2
-        let textWidth = searchWidth - searchTextHorizontalPadding * 2 - doneButtonSize.width
+        let textWidth = searchWidth - searchTextHorizontalPadding * 2 - doneButton.frame.size.width - searchTextHorizontalPadding/2
         let textX = searchPadding + searchTextHorizontalPadding
         let textY = statusHeight + searchPadding + searchTextVerticalPadding + 1
         
@@ -97,8 +107,8 @@ class ALSearchBar: UIView {
         searchField.alpha = 1
         
         let doneX = textX + textWidth + searchTextHorizontalPadding
-        let doneY = searchY
-        doneButton.frame = CGRectMake(doneX, doneY, doneButtonSize.width, doneButtonSize.height)
+        let doneY = textY + (textHeight/2 - doneButton.frame.size.height/2) - 1
+        doneButton.frame.origin = CGPointMake(doneX, doneY)
         
         shadowOn()
         
@@ -119,6 +129,7 @@ class ALSearchBar: UIView {
         
         searchField.frame = CGRectMake(textX, textY, textWidth, textHeight)
         searchField.alpha = 0
+        searchField.resignFirstResponder()
         
         shadowOff()
         

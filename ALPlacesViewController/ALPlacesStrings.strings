@@ -1,0 +1,14 @@
+/* 
+  ALPlacesStrings.strings
+  ALPlacesViewController
+
+  Created by Alex Littlejohn on 2015/07/15.
+  Copyright (c) 2015 zero. All rights reserved.
+*/
+
+"location.notauthorized.message" = "Please enable location services in your privacy settings.";
+"location.notauthorized.title" = "Permission Required";
+
+"settings.button" = "Settings";
+"settings.cancel" = "Cancel";
+"search.done" = "Done";

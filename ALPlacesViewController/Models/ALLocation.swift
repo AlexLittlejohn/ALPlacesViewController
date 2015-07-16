@@ -1,5 +1,5 @@
 //
-//  ALUserLocation.swift
+//  ALLocation.swift
 //  ALPlacesViewController
 //
 //  Created by Alex Littlejohn on 2015/07/14.
@@ -9,7 +9,7 @@
 import UIKit
 import  CoreLocation
 
-class ALUserLocation: NSObject {
-    var location: CLLocation?
+class ALLocation: NSObject {
+    var coordinate: CLLocationCoordinate2D?
     var address: String?
 }
