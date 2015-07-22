@@ -90,7 +90,7 @@ public class ALPlacesViewController: UIViewController {
         searchView.frame = CGRectMake(0, 0, view.bounds.size.width, 0)
         searchView.layoutSearchableState()
         searchView.onDoneButton = {
-            self.onLocationPicked?(address: self.userLocation?.address, coordinate: self.userLocation?.coordinate, error: nil)
+            self.onLocationPicked?(address: nil, coordinate: nil, error: nil)
         }
         
         view.addSubview(collectionView)
