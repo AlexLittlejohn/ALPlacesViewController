@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ALPlacesViewController
+//  Places
 //
 //  Created by Alex Littlejohn on 2015/07/14.
 //  Copyright (c) 2015 zero. All rights reserved.
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assert(false, "Insert your APIKey here")
+        assert(false, "Insert your APIKey here and delete this line")
         placePicker = ALPlacesViewController(APIKey: "", completion: onLocationPicked)
         
         button.setTitle("open picker", forState: UIControlState.Normal)

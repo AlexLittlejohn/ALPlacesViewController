@@ -1,17 +1,18 @@
 //
-//  ALPlaceCollectionViewCell.swift
-//  ALPlacesViewController
+//  CurrentLocationCell.swift
+//  Places
 //
-//  Created by Alex Littlejohn on 2015/07/13.
+//  Created by Alex Littlejohn on 2015/07/15.
 //  Copyright (c) 2015 zero. All rights reserved.
 //
 
 import UIKit
 
-internal class ALPlaceCollectionViewCell: ALCollectionViewCell {
-    
+class CurrentLocationCell: Cell {
+
     let iconView = UIImageView()
     let iconViewSize = CGSizeMake(30, 30)
+    let pulsingLayer = ALPulsingHalo()
     
     override func commonInit() {
         nameLabel.font = ALCollectionViewCell.nameFont
@@ -23,10 +24,14 @@ internal class ALPlaceCollectionViewCell: ALCollectionViewCell {
         nameLabel.lineBreakMode = NSLineBreakMode.ByTruncatingTail
         addressLabel.lineBreakMode = NSLineBreakMode.ByTruncatingTail
         
-        iconView.contentMode = UIViewContentMode.Center
-        iconView.image = UIImage(named: "marker", inBundle: NSBundle(forClass: ALPlacesViewController.self), compatibleWithTraitCollection: nil)
-        
         divider.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        
+        iconView.contentMode = UIViewContentMode.Center
+        iconView.image = UIImage(named: "userMarker", inBundle: NSBundle(forClass: ALPlacesViewController.self), compatibleWithTraitCollection: nil)
+        
+        pulsingLayer.radius = 22
+
+        layer.insertSublayer(pulsingLayer, atIndex: 0)
         
         backgroundColor = UIColor.whiteColor()
         
@@ -41,12 +46,18 @@ internal class ALPlaceCollectionViewCell: ALCollectionViewCell {
         
         let size = bounds.size
         
-        let iconX = ALCollectionViewCell.horizontalPadding
-        let iconY = size.height/2 - iconViewSize.height/2
+        let pulseX = ALCollectionViewCell.horizontalPadding
+        let pulseY = size.height/2 - iconViewSize.height/2
         
-        iconView.frame = CGRectMake(iconX, iconY, iconViewSize.width, iconViewSize.height)
+        iconView.frame = CGRectMake(pulseX, pulseY, iconViewSize.width, iconViewSize.height)
         
-        let nameX = iconX + iconViewSize.width + ALCollectionViewCell.horizontalSpacing
+        let pulseSize = pulsingLayer.frame.size
+        let pulseLayerX = pulseX + (iconViewSize.width/2 - pulseSize.width/2)
+        let pulseLayerY = pulseY + (iconViewSize.height/2 - pulseSize.height/2)
+        
+        pulsingLayer.frame.origin = CGPointMake(pulseLayerX, pulseLayerY)
+        
+        let nameX = pulseX + iconViewSize.width + ALCollectionViewCell.horizontalSpacing
         let nameY = ALCollectionViewCell.verticalPadding
         let nameWidth = size.width - (ALCollectionViewCell.horizontalPadding * 3 + iconViewSize.width)
         let nameHeight = nameLabel.font.lineHeight
@@ -68,9 +79,11 @@ internal class ALPlaceCollectionViewCell: ALCollectionViewCell {
         divider.frame = CGRectMake(dividerX, dividerY, dividerWidth, dividerHeight)
     }
     
-    func configureWithPlace(place: ALPlace) {
-        nameLabel.text = place.name
-        addressLabel.text = place.address
+    func configureWithLocation(location: ALLocation) {
+        nameLabel.text = "Current location"
+        addressLabel.text = location.address
         setNeedsLayout()
     }
+
+
 }

@@ -1,6 +1,6 @@
 //
-//  ALPredictionCollectionViewCell.swift
-//  ALPlacesViewController
+//  PredictionCell.swift
+//  Places
 //
 //  Created by Alex Littlejohn on 2015/07/16.
 //  Copyright (c) 2015 zero. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ALPredictionCollectionViewCell: UICollectionViewCell {
+class PredictionCell: Cell {
 
     static let horizontalPadding: CGFloat = 14
     static let verticalPadding: CGFloat = 14

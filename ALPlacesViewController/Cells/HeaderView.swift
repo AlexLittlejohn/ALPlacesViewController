@@ -1,6 +1,6 @@
 //
-//  ALPlacesHeaderView.swift
-//  ALPlacesViewController
+//  HeaderView.swift
+//  Places
 //
 //  Created by Alex Littlejohn on 2015/07/12.
 //  Copyright (c) 2015 zero. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ALPlacesHeaderView: UICollectionReusableView {
+class HeaderView: UICollectionReusableView {
    
     var mapView: MKMapView!
     

@@ -17,18 +17,18 @@
 		FA193CA91B54F52700D23A47 /* UIDevice+DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA193CA81B54F52700D23A47 /* UIDevice+DeviceModel.swift */; };
 		FA193CAB1B55049600D23A47 /* ALPlacesAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA193CAA1B55049600D23A47 /* ALPlacesAssets.xcassets */; };
 		FA193CAD1B550D1F00D23A47 /* ALSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA193CAC1B550D1F00D23A47 /* ALSearchBar.swift */; };
-		FA6B2E351B52FEB20015E29E /* ALPlacesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B2E341B52FEB20015E29E /* ALPlacesHeaderView.swift */; };
-		FAC5D01A1B55444900BAFA51 /* ALLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0191B55444900BAFA51 /* ALLocation.swift */; };
+		FA6B2E351B52FEB20015E29E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B2E341B52FEB20015E29E /* HeaderView.swift */; };
+		FAC5D01A1B55444900BAFA51 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0191B55444900BAFA51 /* Location.swift */; };
 		FAC5D01C1B554F5100BAFA51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D01B1B554F5100BAFA51 /* ViewController.swift */; };
-		FAC5D0361B56B18D00BAFA51 /* ALCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0301B56B18D00BAFA51 /* ALCollectionViewCell.swift */; };
-		FAC5D0371B56B18D00BAFA51 /* ALPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0311B56B18D00BAFA51 /* ALPlace.swift */; };
+		FAC5D0361B56B18D00BAFA51 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0301B56B18D00BAFA51 /* Cell.swift */; };
+		FAC5D0371B56B18D00BAFA51 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0311B56B18D00BAFA51 /* Place.swift */; };
 		FAC5D0381B56B18D00BAFA51 /* ALPlacesAutocompleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0321B56B18D00BAFA51 /* ALPlacesAutocompleteInteractor.swift */; };
 		FAC5D0391B56B18D00BAFA51 /* ALPlacesSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0331B56B18D00BAFA51 /* ALPlacesSearchInteractor.swift */; };
-		FAC5D03A1B56B18D00BAFA51 /* ALPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0341B56B18D00BAFA51 /* ALPrediction.swift */; };
+		FAC5D03A1B56B18D00BAFA51 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0341B56B18D00BAFA51 /* Prediction.swift */; };
 		FAC5D03B1B56B18D00BAFA51 /* ALUserLocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D0351B56B18D00BAFA51 /* ALUserLocationInteractor.swift */; };
-		FAC5D0401B56B4BE00BAFA51 /* ALUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D03F1B56B4BE00BAFA51 /* ALUserCollectionViewCell.swift */; };
+		FAC5D0401B56B4BE00BAFA51 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5D03F1B56B4BE00BAFA51 /* CurrentLocationCell.swift */; };
 		FACA13211B53C2A30014E394 /* ALPlacesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA13201B53C2A30014E394 /* ALPlacesDelegate.swift */; };
-		FACA13231B53D6D70014E394 /* ALPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA13221B53D6D70014E394 /* ALPlaceCollectionViewCell.swift */; };
+		FACA13231B53D6D70014E394 /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA13221B53D6D70014E394 /* PlaceCell.swift */; };
 		FACA13331B5412EE0014E394 /* ALStickyHeaderFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA13321B5412EE0014E394 /* ALStickyHeaderFlowLayout.swift */; };
 		FADE73F21B56CF3F00E16894 /* ALPlacesStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = FADE73F11B56CF3F00E16894 /* ALPlacesStrings.strings */; };
 		FADE73F41B56D12700E16894 /* ALSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE73F31B56D12700E16894 /* ALSettingsInteractor.swift */; };
@@ -37,7 +37,7 @@
 		FADE73FA1B56DD3B00E16894 /* ALCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE73F91B56DD3B00E16894 /* ALCollectionViewDelegate.swift */; };
 		FADE73FC1B56E1FB00E16894 /* ALGeocodingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE73FB1B56E1FB00E16894 /* ALGeocodingInteractor.swift */; };
 		FAEB717D1B57A5980053E7AB /* ALPlaceDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB717C1B57A5980053E7AB /* ALPlaceDetailsInteractor.swift */; };
-		FAEB717F1B57B6500053E7AB /* ALPredictionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB717E1B57B6500053E7AB /* ALPredictionCollectionViewCell.swift */; };
+		FAEB717F1B57B6500053E7AB /* PredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB717E1B57B6500053E7AB /* PredictionCell.swift */; };
 		FAF514901B57CECD00089166 /* ALPulsingHalo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5148F1B57CECD00089166 /* ALPulsingHalo.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,18 +68,18 @@
 		FA193CA81B54F52700D23A47 /* UIDevice+DeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceModel.swift"; sourceTree = "<group>"; };
 		FA193CAA1B55049600D23A47 /* ALPlacesAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ALPlacesAssets.xcassets; sourceTree = "<group>"; };
 		FA193CAC1B550D1F00D23A47 /* ALSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSearchBar.swift; sourceTree = "<group>"; };
-		FA6B2E341B52FEB20015E29E /* ALPlacesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlacesHeaderView.swift; sourceTree = "<group>"; };
-		FAC5D0191B55444900BAFA51 /* ALLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALLocation.swift; sourceTree = "<group>"; };
+		FA6B2E341B52FEB20015E29E /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FAC5D0191B55444900BAFA51 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FAC5D01B1B554F5100BAFA51 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FAC5D0301B56B18D00BAFA51 /* ALCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALCollectionViewCell.swift; sourceTree = "<group>"; };
-		FAC5D0311B56B18D00BAFA51 /* ALPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlace.swift; sourceTree = "<group>"; };
+		FAC5D0301B56B18D00BAFA51 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		FAC5D0311B56B18D00BAFA51 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		FAC5D0321B56B18D00BAFA51 /* ALPlacesAutocompleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlacesAutocompleteInteractor.swift; sourceTree = "<group>"; };
 		FAC5D0331B56B18D00BAFA51 /* ALPlacesSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlacesSearchInteractor.swift; sourceTree = "<group>"; };
-		FAC5D0341B56B18D00BAFA51 /* ALPrediction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPrediction.swift; sourceTree = "<group>"; };
+		FAC5D0341B56B18D00BAFA51 /* Prediction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		FAC5D0351B56B18D00BAFA51 /* ALUserLocationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALUserLocationInteractor.swift; sourceTree = "<group>"; };
-		FAC5D03F1B56B4BE00BAFA51 /* ALUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAC5D03F1B56B4BE00BAFA51 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		FACA13201B53C2A30014E394 /* ALPlacesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlacesDelegate.swift; sourceTree = "<group>"; };
-		FACA13221B53D6D70014E394 /* ALPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		FACA13221B53D6D70014E394 /* PlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		FACA13321B5412EE0014E394 /* ALStickyHeaderFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALStickyHeaderFlowLayout.swift; sourceTree = "<group>"; };
 		FADE73F11B56CF3F00E16894 /* ALPlacesStrings.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ALPlacesStrings.strings; sourceTree = "<group>"; };
 		FADE73F31B56D12700E16894 /* ALSettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSettingsInteractor.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		FADE73F91B56DD3B00E16894 /* ALCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		FADE73FB1B56E1FB00E16894 /* ALGeocodingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALGeocodingInteractor.swift; sourceTree = "<group>"; };
 		FAEB717C1B57A5980053E7AB /* ALPlaceDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPlaceDetailsInteractor.swift; sourceTree = "<group>"; };
-		FAEB717E1B57B6500053E7AB /* ALPredictionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPredictionCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAEB717E1B57B6500053E7AB /* PredictionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionCell.swift; sourceTree = "<group>"; };
 		FAF5148F1B57CECD00089166 /* ALPulsingHalo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALPulsingHalo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,11 +211,11 @@
 		FAC5D03C1B56B19D00BAFA51 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FA6B2E341B52FEB20015E29E /* ALPlacesHeaderView.swift */,
-				FAC5D0301B56B18D00BAFA51 /* ALCollectionViewCell.swift */,
-				FACA13221B53D6D70014E394 /* ALPlaceCollectionViewCell.swift */,
-				FAC5D03F1B56B4BE00BAFA51 /* ALUserCollectionViewCell.swift */,
-				FAEB717E1B57B6500053E7AB /* ALPredictionCollectionViewCell.swift */,
+				FA6B2E341B52FEB20015E29E /* HeaderView.swift */,
+				FAC5D0301B56B18D00BAFA51 /* Cell.swift */,
+				FACA13221B53D6D70014E394 /* PlaceCell.swift */,
+				FAC5D03F1B56B4BE00BAFA51 /* CurrentLocationCell.swift */,
+				FAEB717E1B57B6500053E7AB /* PredictionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -236,9 +236,9 @@
 		FAC5D03E1B56B1C500BAFA51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FAC5D0311B56B18D00BAFA51 /* ALPlace.swift */,
-				FAC5D0341B56B18D00BAFA51 /* ALPrediction.swift */,
-				FAC5D0191B55444900BAFA51 /* ALLocation.swift */,
+				FAC5D0311B56B18D00BAFA51 /* Place.swift */,
+				FAC5D0341B56B18D00BAFA51 /* Prediction.swift */,
+				FAC5D0191B55444900BAFA51 /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = zero;
 				TargetAttributes = {
 					FA17764E1B4FBA3D00045B76 = {
@@ -397,30 +397,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6B2E351B52FEB20015E29E /* ALPlacesHeaderView.swift in Sources */,
+				FA6B2E351B52FEB20015E29E /* HeaderView.swift in Sources */,
 				FACA13211B53C2A30014E394 /* ALPlacesDelegate.swift in Sources */,
 				FACA13331B5412EE0014E394 /* ALStickyHeaderFlowLayout.swift in Sources */,
 				FA1776551B4FBA3D00045B76 /* AppDelegate.swift in Sources */,
 				FAC5D01C1B554F5100BAFA51 /* ViewController.swift in Sources */,
 				FADE73F61B56D2C200E16894 /* ALLocalizedString.swift in Sources */,
-				FAC5D0361B56B18D00BAFA51 /* ALCollectionViewCell.swift in Sources */,
+				FAC5D0361B56B18D00BAFA51 /* Cell.swift in Sources */,
 				FA1776761B4FE1B700045B76 /* ALPlacesViewController.swift in Sources */,
-				FAEB717F1B57B6500053E7AB /* ALPredictionCollectionViewCell.swift in Sources */,
+				FAEB717F1B57B6500053E7AB /* PredictionCell.swift in Sources */,
 				FAC5D03B1B56B18D00BAFA51 /* ALUserLocationInteractor.swift in Sources */,
-				FAC5D0401B56B4BE00BAFA51 /* ALUserCollectionViewCell.swift in Sources */,
+				FAC5D0401B56B4BE00BAFA51 /* CurrentLocationCell.swift in Sources */,
 				FAC5D0391B56B18D00BAFA51 /* ALPlacesSearchInteractor.swift in Sources */,
 				FA193CA71B54F4A000D23A47 /* ALKeyboardObservingView.swift in Sources */,
 				FAEB717D1B57A5980053E7AB /* ALPlaceDetailsInteractor.swift in Sources */,
 				FADE73FC1B56E1FB00E16894 /* ALGeocodingInteractor.swift in Sources */,
-				FAC5D0371B56B18D00BAFA51 /* ALPlace.swift in Sources */,
+				FAC5D0371B56B18D00BAFA51 /* Place.swift in Sources */,
 				FAC5D0381B56B18D00BAFA51 /* ALPlacesAutocompleteInteractor.swift in Sources */,
 				FAF514901B57CECD00089166 /* ALPulsingHalo.swift in Sources */,
-				FAC5D03A1B56B18D00BAFA51 /* ALPrediction.swift in Sources */,
-				FACA13231B53D6D70014E394 /* ALPlaceCollectionViewCell.swift in Sources */,
+				FAC5D03A1B56B18D00BAFA51 /* Prediction.swift in Sources */,
+				FACA13231B53D6D70014E394 /* PlaceCell.swift in Sources */,
 				FADE73FA1B56DD3B00E16894 /* ALCollectionViewDelegate.swift in Sources */,
 				FADE73F41B56D12700E16894 /* ALSettingsInteractor.swift in Sources */,
 				FA193CAD1B550D1F00D23A47 /* ALSearchBar.swift in Sources */,
-				FAC5D01A1B55444900BAFA51 /* ALLocation.swift in Sources */,
+				FAC5D01A1B55444900BAFA51 /* Location.swift in Sources */,
 				FA193CA91B54F52700D23A47 /* UIDevice+DeviceModel.swift in Sources */,
 				FADE73F81B56DCF300E16894 /* ALPredictionsDelegate.swift in Sources */,
 			);
@@ -478,6 +478,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -547,6 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zero.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -558,6 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zero.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -576,6 +579,7 @@
 				);
 				INFOPLIST_FILE = "ALPlacesViewControllerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zero.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ALPlacesViewController.app/ALPlacesViewController";
 			};
@@ -591,6 +595,7 @@
 				);
 				INFOPLIST_FILE = "ALPlacesViewControllerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zero.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ALPlacesViewController.app/ALPlacesViewController";
 			};
