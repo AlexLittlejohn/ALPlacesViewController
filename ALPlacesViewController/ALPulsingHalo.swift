@@ -27,12 +27,12 @@ internal class ALPulsingHalo: CALayer {
         commonInit()
     }
 
-    override init!(layer: AnyObject!) {
+    override init(layer: AnyObject) {
         super.init(layer: layer)
         commonInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -66,12 +66,12 @@ internal class ALPulsingHalo: CALayer {
         animationGroup.removedOnCompletion = false
         animationGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
-        var scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         scaleAnimation.fromValue = fromValueForRadius
         scaleAnimation.toValue = 1
         scaleAnimation.duration = animationDuration
         
-        var opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
         opacityAnimation.duration = animationDuration
         opacityAnimation.values = [fromValueForAlpha, CGFloat(0.45), CGFloat(0)]
         opacityAnimation.keyTimes = [CGFloat(0), keyTimeForHalfOpacity, CGFloat(1)]
@@ -81,7 +81,7 @@ internal class ALPulsingHalo: CALayer {
         animationGroup.delegate = self
     }
     
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if flag {
             removeAllAnimations()
             removeFromSuperlayer()

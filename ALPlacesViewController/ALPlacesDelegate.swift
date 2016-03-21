@@ -42,7 +42,7 @@ internal class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDeleg
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        var item = itemAtIndexPath(indexPath)
+        let item = itemAtIndexPath(indexPath)
         
         if let place = item as? ALPlace {
             onLocationPicked?(address: place.name, coordinate: place.coordinate, error: nil)
@@ -68,7 +68,7 @@ internal class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDeleg
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        var item = itemAtIndexPath(indexPath)
+        let item = itemAtIndexPath(indexPath)
         
         if let place = item as? ALPlace {
             return ALPlaceCollectionViewCell.cellSize()
@@ -81,7 +81,7 @@ internal class ALPlacesDelegate: ALCollectionViewDelegate, UICollectionViewDeleg
         
         var cell: UICollectionViewCell
         
-        var item = itemAtIndexPath(indexPath)
+        let item = itemAtIndexPath(indexPath)
         
         if let place = item as? ALPlace {
             let placeCell = collectionView.dequeueReusableCellWithReuseIdentifier(ALPlaceCollectionViewCellIdentifier, forIndexPath: indexPath) as! ALPlaceCollectionViewCell

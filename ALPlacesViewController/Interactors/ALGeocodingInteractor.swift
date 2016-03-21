@@ -33,7 +33,7 @@ class ALGeocodingInteractor {
                     self.completion?(address: nil, error: e)
                 } else if let place = places.first as? CLPlacemark {
                     if let lines = place.addressDictionary["FormattedAddressLines"] as? [String] {
-                        let address = join(", ", lines)
+                        let address = lines.joinWithSeparator(", ")
                         self.completion?(address: address, error: nil)
                     }
                 }

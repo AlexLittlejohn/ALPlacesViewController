@@ -26,7 +26,7 @@ internal class ALKeyboardObservingView: UIView {
         super.willMoveToSuperview(newSuperview)
     }
     
-    internal override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    internal override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if object as? NSObject == superview && keyPath == keyboardHandlingKeyPath() {
             keyboardDidChangeFrame(superview!.frame)
         } else {

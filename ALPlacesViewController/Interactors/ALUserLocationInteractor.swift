@@ -29,7 +29,7 @@ class ALUserLocationInteractor: NSObject, CLLocationManagerDelegate {
         return self
     }
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.Denied || status == CLAuthorizationStatus.Restricted {
             let errorArgs = [NSLocalizedDescriptionKey: LocalizedString("location.notauthorized.message")]
             let error = NSError(domain: errorDomain, code: 1, userInfo: errorArgs)
@@ -42,7 +42,7 @@ class ALUserLocationInteractor: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = nil
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations[0] as? CLLocation {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil

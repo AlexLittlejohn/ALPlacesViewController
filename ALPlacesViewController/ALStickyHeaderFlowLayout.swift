@@ -23,7 +23,7 @@ internal class ALStickyHeaderFlowLayout: UICollectionViewFlowLayout {
         return true
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let insets = collectionView!.contentInset
         let offset = collectionView!.contentOffset
         let minY = -insets.top

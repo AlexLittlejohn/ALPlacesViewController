@@ -19,7 +19,7 @@ internal class ALCollectionViewDelegate: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ALPlaceCollectionViewHeaderIdentifier, forIndexPath: indexPath) as! UICollectionReusableView
+        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ALPlaceCollectionViewHeaderIdentifier, forIndexPath: indexPath) 
     }
     
 }

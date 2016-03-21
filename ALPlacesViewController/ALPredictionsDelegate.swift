@@ -58,7 +58,7 @@ internal class ALPredictionsDelegate: ALCollectionViewDelegate, UICollectionView
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ALPredictionCollectionViewCellIdentifier, forIndexPath: indexPath) as! ALPredictionCollectionViewCell
         
-        var item = predictions[indexPath.row]
+        let item = predictions[indexPath.row]
         
         cell.configureWithPrediction(item)
         
